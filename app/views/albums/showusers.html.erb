@@ -1,0 +1,58 @@
+<script src="/javascripts/jquery-latest.pack.js" type="text/javascript"></script>
+	<script src="/javascripts/jquery.lightbox.js" type="text/javascript"></script>
+
+<script>
+		$(document).ready(function(){
+			$(".lightbox").lightbox();
+		});
+
+	</script>
+<style type="text/css">
+		body{ color: #333; font: 13px 'Lucida Grande', Verdana, sans-serif;}
+	</style>
+
+<%if @album.photos.exists? %>
+<table  >
+<tr>
+	<td colspan="10" style="background-color:blue" >
+		<span style="color:white;font-family:monospace">
+			<b>User Name:</b><%=@user.name%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Album Name:</b><%=@album.album_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Description:</b><%=@album.album_description %>
+	</td>
+</tr>
+</table>
+<table >
+<tr >
+	
+		<% for photo in @album.photos %>
+		<td >
+			<%=link_to (image_tag photo.image.url(:thumb)),photo.image.url(:large),:class=>"lightbox"%>
+			<%=photo.image_description%><br/>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+		
+	
+		<% end %>
+<%else%>	
+</tr>
+<tr>
+<td colspan="10" style="font-size:20px;color:DarkBlue;">
+		<span style="color:white;font-family:monospace;background-color:blue">
+			<b>User Name:</b><%=@user.name%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Album Name:</b><%=@album.album_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Description:</b><%=@album.album_description %>
+</span>
+</td>
+</tr>
+<tr>
+<td colspan="10" style="font-size:20px;color:DarkBlue;">
+<%=image_tag ('/images/smiley face.jpg'),:width=>'80px',:height=>'80px'%>Sorry, No Photo Available................
+
+</td>
+</tr>
+</table>
+
+<%end%>	
+
+
+

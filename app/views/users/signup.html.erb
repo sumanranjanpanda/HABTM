@@ -1,0 +1,86 @@
+<%=stylesheet_link_tag :all%>
+<center>
+<% form_for(@user,:method=>"post",:url=>{:controller=>"Users",:action=>"create"},:html => { :multipart => true }) do |f| %>
+<div class="err_msg" >
+	<% if @user.errors.count > 0 %>
+		<%= f.error_messages :header_message =>nil, :message => nil %>
+	<% end %>
+</div>
+<table class="signin-box" style="background-size:450px 700px;margin:5px 0 0 0;">
+	<tr>
+		<td colspan="2"><div style="color:Darkgreen;text-align:center;font-size:150%">Enter details</div></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Name:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :name,:placeholder=>"name....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Occupation:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :occupation,:placeholder=>"occupation....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Role:</td>
+		<td class="des_left" style="font-size:100%">
+		<ul type="none">
+		<% for role in Role.find(:all)%><%end%>
+			<li style="font-size:100%;padding-left:10px;display:block;"><%=check_box_tag "user[role_ids][]",role.id,:checked=>"checked"%>
+			<%=role.name%></li>
+		
+		</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="des_right">Gender:</td>
+		<td class="des_left"><%=f.radio_button "gender","male" ,:checked=>true%>Male
+					<%=f.radio_button "gender","female" %>Female</td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Age:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :age,:placeholder=>"age....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Email id:</td>
+
+		<td class="des_left" style="font-size:100%"><%=f.text_field :email,:placeholder=>"valid email id....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Mobile No:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :mobile,:placeholder=>"mobile no....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Address:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_area :address,:size=>"30x5",:placeholder=>"address....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Upload ur photo:</td>
+		<td class="des_left" style="font-size:100%"><%=f.file_field :photo%></td>
+	</tr>
+
+	<tr>
+		<td class="des_right" nowrap>Upload ur resume:</td>
+		<td class="des_left" style="font-size:100%"><%= file_column_field 'user', "file_upload" %></td>
+	</tr>
+
+	<tr>
+		<td class="des_right" nowrap>User Name:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :username,:placeholder=>"username....."%></td>
+	</tr>
+
+	<tr>
+		<td class="des_right">Password:</td>
+		<td class="des_left"><%=password_field "user","password"%></td>
+	</tr>
+	<tr>
+		<td class="des_right">Confirm Password:</td>
+		<td class="des_left"><%=password_field "user","password_confirmation"%></td>
+	</tr>
+
+	<tr>
+		<td colspan="2"><br/><center><%= f.submit "Save",:class=>"g-button-submit"%></center></td>
+	</tr>
+</table>
+</center>
+<%end%>			
+
+

@@ -1,0 +1,42 @@
+
+<html>
+	<head>
+		<%=stylesheet_link_tag :all%>
+		<title>suman </title> 	
+
+	</head>
+	
+	<body class="bgi" id="chth">
+		<%=render :partial=>"layouts/header"%>
+			
+
+				<td><fieldset style="width:70px;height:35px;border-color:Darkorange;-webkit-border-radius:7px">
+<div style="color:darkblue;font-size:25px;font-style:bold,font-family:monospace;">Photo</div>
+<div style="color:darkblue;font-size:15px;font-style:bold,font-family:monospace;text-align:right">Share</div></fieldset></td>
+				<%= render :partial=>"layouts/menu"%>
+			<td colspan="2" width="100%"><%=yield%>
+		<%=render :partial=>"layouts/footer"%>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

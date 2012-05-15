@@ -1,0 +1,27 @@
+<td> 
+   <div id="navigation" style="float:right">
+   <ul>
+ 		<%if session[:user_id]==nil%>
+                <li><%=link_to "Home",:controller=>"users",:action=>"signin"%></li>
+		<%else%>
+                <li><%=link_to "Home",:controller=>"albums",:action=>"showall"%></li>
+                <li><%=link_to "sign out",:controller=>"users",:action=>"signout"%></li>
+                <li><%=link_to "Profile",:controller=>"users",:action=>"profile",:id=>session[:user_id]%></li>	
+                <li><%=link_to "Add Album",:controller=>"albums",:action=>"new"%></li>
+                <li><%=link_to "View Album",:controller=>"albums",:action=>"viewalbum"%></li>
+               <li><%=link_to "Theme setting",:controller=>"albums",:action=>"theme"%></li>
+ 
+                <li><%=link_to "Password Setting",:controller=>"users",:action=>"changepassword",:id=>session[:user_id]%></li>	
+		<%end%>	
+                <li><%=link_to "About us",:controller=>"users",:action=>"aboutUs"%></li>
+                <li><%=link_to "Contact us",:controller=>"users",:action=>"contactUs"%></li>
+  </ul>
+<%if session[:user_id]%>
+<div id="div_r" style="color:red;font-style:italic;font-family:verdana;font-size:21px;margin-top:50px">Welcome <%=session[:user_name]%></div> 
+<%end%>
+	</div>   
+
+<div style="float:right"><%flash[:notice]%></div>
+
+</td>
+<tr>

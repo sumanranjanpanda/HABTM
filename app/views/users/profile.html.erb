@@ -1,0 +1,73 @@
+<%=stylesheet_link_tag :all%>
+				<span ><span id="div_l" style="margin:30px 0px 0px 50px;">	<% if @user.photo.exists? then %>
+										<%= image_tag @user.photo.url(:thumb) %>
+										<%else%>	
+										<%= image_tag ("/images/nophoto.png",:width=>'130px',:height=>'90px')%>
+										<%end%></span>
+<span ><br/>
+<center>
+
+
+<table class="signin-box" style="width:400px;background-size:400px 500px;margin:0">
+	<tr>
+		<td class="des_right"  nowrap>Name</td>
+		<td class="des_left" style="font-size:100%">:<%=@user.name%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Occupation</td>
+		<td class="des_left" style="font-size:100%">:<%=@user.occupation%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Role</td>
+		<td class="des_left" style="font-size:100%">:<%=@user.roles.collect{|rolename| rolename.name }.join(', ')%></td>
+<%#=debug(@user.roles)%>
+	</tr>
+
+	<tr>
+		<td class="des_right">Gender</td>
+		<td class="des_left" style="font-size:100%">:<%=@user.gender%>
+					
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Age</td>
+		<td class="des_left" style="font-size:100%">:<%=@user.age%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Email id</td>
+
+		<td class="des_left" style="font-size:100%">:<%=@user.email%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Mobile No</td>
+		<td class="des_left" style="font-size:100%">:<%=@user.mobile%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Address</td>
+		<td class="des_left" style="font-size:100%">:<%=@user.address%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>ur resume</td>
+		<td class="des_left" style="font-size:100%"><%= link_to image_tag("/images/text_file .gif") ,:action => :download, :file_name => @user.file_upload %><%#= image_tag "/images/text_file .gif" %>
+</td>
+	</tr>
+<!--	<tr>
+		<td></td>
+		<td class="des_left" style="font-size:5%">:<%#= link_to @user.file_upload ,:action => :download, :file_name => @user.file_upload %></td>
+	</tr>-->
+
+
+	<tr>
+		<td class="des_right" nowrap>User Name</td>
+		<td class="des_left" style="font-size:100%">:<%=@user.username%></td>
+	</tr>
+	<tr>
+		<td style="text-align:center;" colspan="2"><br/><%= link_to "edit",{:controller=>"Users", :action=>"edit",:id=>@user.id},:class=>"g-button-submit1"%>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "delete",{:controller=>"Users", :action=>"delete",:id=>@user.id},:class=>"g-button-submit1"%>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "home",{:controller=>"Users", :action=>"index",:id=>@user.id},:class=>"g-button-submit1"%>
+		</td>
+	</tr>
+</table>
+
+</center>
+		
+</span>
+</span>
+

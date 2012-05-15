@@ -1,0 +1,47 @@
+<div style="margin:20px 0 0 0">
+
+	<%if @user.albums.exists?%>
+		<div class="img" style="background-color:#3333FF;-webkit-border-radius:10px;padding:10px">
+		<% for album in @user.albums %>
+			<%if album.photos.exists?%>
+		<div class="img">
+			<span class="img" style="background-color:darkorange;-webkit-border-radius:10px;padding:5px">
+				<% for photo in album.photos %><%end%>
+					<%=link_to image_tag(photo.image.url(:thumb),:mouseover=>photo.image.url(:small),
+						 :alt => ""),:controller=>"albums",:action=>"showphoto",:id=>album.id %> 
+						<span class="desc" style="color:white;font-size:12px;font-family:verdana;font-style:italic;text-align:left">
+							<div><b>Album Name:</b> <%=album.album_name %></div>
+							<b>Description:</b><%=album.album_description %>
+						</span>	<br/>	
+			<%=link_to image_tag(('/images/delete_icon.png'),:width=>'30px',:height=>'30px'),
+						{:controller=>"albums",:action=>"deleteAlbum",:id=>album},{:onclick=>"return confirm('Are you sure ?');"}%>
+
+			</span>
+		</div>
+	<%else%>
+		<div class="img" style="background-color:#3333FF;-webkit-border-radius:10px;padding:10px">
+		<div class="img">
+			<span class="img" style="background-color:darkorange;-webkit-border-radius:10px;padding:5px">
+					<%=link_to image_tag(('/images/smiley face.jpg'),:width=>'40px',:height=>'40px'),
+							:controller=>"albums",:action=>"showphoto",:id=>album.id %> 
+						Sorry, No photo available
+						<span class="desc" style="color:white;font-size:12px;font-family:verdana;font-style:italic;text-align:left">
+							<div><b>Album Name:</b> <%=album.album_name %></div>
+							<b>Description:</b><%=album.album_description %>
+						</span>	<br/>	
+			<%=link_to image_tag(('/images/delete_icon.png'),:width=>'30px',:height=>'30px'),{:controller=>"albums",:action=>"deleteAlbum",:id=>album},{:onclick=>"return confirm('Are you sure ?');"}%>
+
+			</span>
+		</div>
+		</div>
+
+
+
+		<%end%>
+		<%end %>
+		</div>
+
+	<%end%>
+		
+
+<div>

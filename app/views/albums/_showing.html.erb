@@ -1,0 +1,26 @@
+	<%= javascript_include_tag :defaults %>
+
+<% for album in @user.albums %>
+<div class="signin-box">
+<p>
+  <b>Album Name:</b>
+
+  <%=album.album_name %>
+
+</p>
+ 
+<p>
+  <b>Description:</b>
+
+ <%=album.album_description %>
+
+ 
+</p>
+ 
+
+<% for photo in album.photos %>
+  <%= image_tag photo.image.url(:thumb),:mouseover=>photo.image.url(:small), :alt => "" %>
+<% end %>
+</div>
+<%end %>
+

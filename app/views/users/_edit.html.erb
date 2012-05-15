@@ -1,0 +1,120 @@
+<html>
+<head>
+	<script type="text/javascript">
+function invisible()
+{
+	document.getElementById("div10").style.display="none";
+	document.getElementById("div20").style.display="block";
+}
+function invisible1()
+{
+	document.getElementById("div11").style.display="none";
+	document.getElementById("div21").style.display="block";
+}
+
+</script>
+</head>
+	
+<body>
+<div >
+<center>
+<% form_for(@user,:method=>"post",:url=>{:controller=>"Users",:action=>"update",:id=>@user.id},:html => { :multipart => true }) do |f| %>
+
+<div class="err_msg">
+	<% if @user.errors.count > 0 %>
+		<%= f.error_messages :header_message =>nil, :message => nil %>
+	<% end %>
+</div>
+
+<table  style="background-size:450px 700px;margin:5px 0 0 0;">
+	<tr>
+		<td colspan="2"><div style="color:Darkgreen;text-align:center;font-size:150%">Update details</div></td>
+	</tr>
+
+	<tr>
+		<td class="des_right" nowrap>Name:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :name,:placeholder=>"name....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Occupation:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :occupation,:placeholder=>"occupation....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Role:</td>
+		<td class="des_left" style="font-size:100%">
+		<ul type="none">
+		<%if @admin.roles.collect{|r| r.name}.include?("Admin") %>
+			<% for role in Role.find(:all)%>
+				<li style="font-size:100%;padding-left:10px;display:block;">
+				<%=check_box_tag "user[role_ids][]",role.id,@user.roles.include?(role)%>
+				<%=role.name%></li>
+			<%end%>
+		<%else%>	
+			<div>Only Admin can edit this option</div>
+		<%end%>
+		</ul>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="des_right">Gender:</td>
+		<td class="des_left"><%=f.radio_button "gender","male" ,:checked=>true%>Male
+					<%=f.radio_button "gender","female" %>Female</td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Age:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :age,:placeholder=>"age....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Email id:</td>
+
+		<td class="des_left" style="font-size:100%"><%=f.text_field :email,:placeholder=>"valid email id....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Mobile No:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :mobile,:placeholder=>"mobile no....."%></td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Address:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_area :address,:size=>"30x5",:placeholder=>"address....."%></td>
+	</tr>
+	<tr>
+		<td  class="des_right" nowrap>Photo :</td>
+		<td   style="padding-left:15px">
+						<div id="div10" style="display:block"><% if @user.photo.exists? then %>
+										<%= image_tag @user.photo.url(:thumb) %>
+										<%else%>	
+										no photo
+										<%end%><br/>
+										<span style="text-decoration:'none';font-size:12px">
+									<a href="#" onclick="invisible()">change ur photo</a></span></div>
+						<div id="div20" style="display:none;" ><%=f.file_field :photo%></div>
+		</td>
+	</tr>
+	<tr>
+		<td class="des_right" nowrap>Resume:</td>
+		<td style="padding-left:15px">
+			<div id="div11" style="display:block">
+				<%= link_to image_tag("/images/text_file .gif") ,:action => :download, :file_name => @user.file_upload %><br/>
+				<span style="text-decoration:'none';font-size:12px">
+				<a href="#" onclick="invisible1()">change ur resume</a></span>
+			</div>
+			<div id="div21" style="display:none;" ><%= file_column_field 'user', "file_upload" %></div>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="des_right" nowrap>User Name:</td>
+		<td class="des_left" style="font-size:100%"><%=f.text_field :username,:placeholder=>"username....."%></td>
+	</tr>
+
+	<tr>
+		<td colspan="2"><br/><center><%= f.submit "Save",:class=>"g-button-submit"%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "back",{:controller=>"Users", :action=>"profile",:id=>@user.id},:class=>"g-button-submit1"%></center></td>
+	</tr>
+</table>
+
+</center>
+<%end%>			
+</div>
+</body>
+</html>

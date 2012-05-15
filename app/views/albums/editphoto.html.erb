@@ -1,0 +1,11 @@
+<center>
+
+<div>
+
+<%form_for :photo,:url=>{:controller=>"albums",:action=>"updatephoto",:id=>@photo},:html=>{:multipart=>true} do |f| %>
+<%=f.file_field :image%>
+<%=f.submit "save"%>
+<%end%>
+</div>
+
+</center>

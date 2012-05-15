@@ -1,0 +1,42 @@
+<%=javascript_include_tag :defaults%>
+<%=stylesheet_link_tag :all%>
+<table >
+<tr >
+	
+		<% for photo in @album.photos %>
+		<td >
+			<%= image_tag photo.image.url(:thumb),:mouseover=>photo.image.url(:large),:alt => ""%>
+			<%=photo.image_description%><br/>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span style="text-align:center">
+				<%=link_to image_tag(("/images/edit_icon.png"),:width=>'15px',:height=>'15px'),
+						:controller=>"albums",:action=>"editphoto",:id=>photo.id %>
+			</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span style="text-align:center">
+				<%=link_to image_tag(("/images/delete_icon.png"),:width=>'15px',:height=>'15px'),
+						:controller=>"albums",:action=>"deletephoto",:id=>photo.id %></span>
+		</td>
+		
+	
+		<% end %>
+	
+</tr>
+</table>
+<div style="text-align:center">
+	<br/><br/>
+	<% form_for (@album,:method=>"post",:url=>{:controller=>"albums",:action=>"updateAlbum",:id=>@album},:html=>{:multipart=>true}) do |f|%>
+
+		<div id="photos" >
+			<%render :partial=>"photo", :collection=>@album.photos%>
+		</div>
+
+		<div >
+			<%=link_to_function "Add photo" do |page|
+			page.insert_html :bottom, :photos ,:partial=>"photo", :object=>Photo.new
+			end%>
+		</div>
+		<div>
+			<br/>
+			<%=f.submit "Add Photos"%>
+		</div>
+	<%end%>
+</div>

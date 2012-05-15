@@ -1,0 +1,43 @@
+<%=stylesheet_link_tag :all%>
+<table  height='80%' width="100%"><tr ><td ><br/><br/>
+<span style="margin:0px 10px 10px 10px;-webkit-border-radius:'10px'"><%= image_tag("/images/bkground_image.png",:height=>'230px')%></span>
+</td>
+<td>
+<span id="div_r"  >
+	<div  style="color:red;text-align:center;margin-top:15px" >
+		<% if flash[:notice]%>
+		<%=flash[:notice]%>
+		<%end%>
+	</div>
+	<div class="signin-box" >
+		<div id="2" style="color:Darkblue">Sign in</div>
+		</br>
+
+		<% form_for :user do |f|%>
+		<table >
+			<tr>
+				<td class="des_right" nowrap>User Name:</td>
+				<td class="des_left" style="font-size:50%"><%=f.text_field :username,:size=>18,:placeholder=>"username..."%></td>
+			</tr>
+			<tr>
+				<td class="des_right" nowrap>Password :</td>
+				<td class="des_left" style="font-size:50%"><%=f.password_field :password,:size=>18,:placeholder=>"password..."%></td>
+			</tr>
+			<tr>
+				<td class="des_right" style="text-align:right" nowrap><%=check_box_tag :remember%></td>
+				<td class="des_left" style="font-size:90%">Remember me &nbsp;<%=link_to "forget password ?",{:controller=>"Users",:action=>"forgetpassword"},{:style=>'text-decoration:none;color:Darkblue;font-family:monospace;font-size:10px;padding:0px;font-style:bold'}%></td>
+			</tr>
+
+			<tr>
+		
+				<td colspan="3"><center><%=f.submit "Sign in",:class=>"g-button-submit"%></center></td>
+		
+			</tr>
+		</table>
+		<%end%>
+		<div style="color:DarkBlue;text-align:center;font-size:80%">Not a member yet? <span><%= link_to "Sign Up",{:controller=>"Users", :action=>"signup"},{:style=>'text-decoration:none;color:white;font-style:bold;font-size:15px;'}%> now</span></div>
+	</div>
+
+</span><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</td></tr>
+</table>

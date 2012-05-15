@@ -1,0 +1,117 @@
+<%=javascript_include_tag "xyz"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Untitled Document</title>
+		<script type="text/javascript" src="/javascripts/fancybox/jquery.min.js"></script>
+	     <script type="text/javascript" src="/javascripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+	     <script type="text/javascript" src="/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+		 <link rel="stylesheet" type="text/css" href="/javascripts/fancybox/jquery.fancybox-1.3.4.css" media="screen" />    
+		  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="screen" />   
+	</head>
+
+<body onLoad="alternate('thetable')">
+<br/>
+<div style="color:Darkgreen;text-align:center;font-size:90%;"><%= link_to ("--Admin-page--" ,{:controller=>"users",:action=>"profile",:id=>1},:style=>"text-decoration:none;color:red")%></div>
+<div class="err_msg">
+<%if flash[:notice]%>
+<%=flash[:notice]%>
+<%end%>
+</div>
+<div style="color:Darkgreen;text-align:center;font-size:150%">List of all users  detail information</div>
+
+<center>
+<div id="total" >
+<% if @users.blank?%>
+</br>
+</br>
+</br>
+</br>'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+</br>
+<div style="color:Darkgreen;text-align:center;font-size:120%;">No Users available....</div>
+<%else%>
+
+<table  id="thetable" border="0" style="background-color:whitesmoke">
+<tr style="background-color:#8585C2">	
+<th class="heading" nowrap>edit</th>
+<th class="heading"" style="padding:0 70px 0 70px;" nowrap>Name</th>
+<!--<th class="heading"  style="text-align:center" nowrap>Occupation</th>-->
+<th class="heading" style="padding:0 40px 0 40px;"  nowrap>Role</th>
+<th class="heading" style="text-align:center"  nowrap>Gender</th>
+<!--<th class="heading"  style="text-align:center" nowrap>Age</th>-->
+<th class="heading"  style="padding:0 90px 0 90px;" nowrap>Email id</th>
+<th class="heading"  style="text-align:center" nowrap>Mobile No</th>
+<th class="heading"  style="padding:0 100px 0 100px;" nowrap>Address</th>
+<th class="heading"  style="padding:0 30px 0 30px;" nowrap>User Name</th>
+</tr>
+<% @users.each do |user|%>
+ <script type="text/javascript">
+	
+		$(document).ready(function() {
+			$("#comment<%=user.id%>").fancybox({
+
+				'titlePosition'		: 'inside',
+				'transitionIn'		: 'elastic',
+				'transitionOut'		: 'fade',
+				'speedIn'		:	500, 
+				'speedOut'		:	500, 
+				'content' : $("#inline<%=user.id%>").html()
+		          });
+                  
+			});
+
+							
+	</script>
+<tr id="popup_edit">
+		<td class="des_left" style="font-size:100%" nowrap>
+
+<%#= link_to "edit","#", {:id => "edit"+user.id.to_s,:style => "color:#455D6B;font-weight:normal",:title=>"Edit", :onclick =>"show_popup('" + user.id.to_s + "');"} %>
+
+
+<input type="checkbox" id="comment<%=user.id%>" ></td>
+
+
+		<td class="des_left" style="font-size:100%" nowrap><%=link_to user.name,:controller=>"users",:action=>"profile",:id=>user.id%></td>
+		<!--<td class="des_left" style="font-size:100%" nowrap><%#=user.occupation%></td>-->
+		<td class="des_left" style="font-size:100%" nowrap><%=user.roles.collect{|rolename| rolename.name }.join(', ')%></td>
+
+		<td class="des_left" style="font-size:100%" nowrap><%=user.gender%>
+		<!--<td class="des_left" style="font-size:100%" nowrap><%#=user.age%></td>-->
+		<td class="des_left" style="font-size:100%" nowrap><%=user.email%></td>
+		<td class="des_left" style="font-size:100%" nowrap><%=user.mobile%></td>
+		<td class="des_left" style="font-size:100%" nowrap><%=user.address%></td>
+		<td class="des_left" style="font-size:100%" nowrap><%=user.username%></td>
+<td>
+<div style="display: none">
+	<div id="inline<%=user.id%>" >
+		<% @user=User.find_by_id(user.id) %>
+		<%= render :partial => 'edit'%>
+	</div>
+</div>
+</td>
+			
+	
+</tr>
+
+<%end%>
+<tr>
+	<td colspan="9" style="text-align:right;font-size:11px;color:blue"><%= will_paginate(@users) %></td>
+</tr>
+</table>
+
+<%end%>
+</div>
+	
+
+
+</center>
+</body>
+		
+
+

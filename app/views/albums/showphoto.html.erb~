@@ -1,0 +1,94 @@
+<script src="/javascripts/jquery-latest.pack.js" type="text/javascript"></script>
+	<script src="/javascripts/jquery.lightbox.js" type="text/javascript"></script>
+
+<script>
+		$(document).ready(function(){
+			$(".lightbox").lightbox();
+		});
+
+	</script>
+<style type="text/css">
+		body{ color: #333; font: 13px 'Lucida Grande', Verdana, sans-serif;	}
+	</style>
+<div>
+<%if @album.photos.exists? %>
+<table   >
+<tr>
+	<td   >
+		<span style="color:#FF5819;font-family:monospace;font-size:20px">
+			<b>Album Name:</b>
+				<%=@album.album_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b>Description:</b>
+					<%=@album.album_description %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+	</td>
+	<td>
+		<br/>
+		<span >
+		<%=button_to "Add Photos",:controller=>"albums",:action=>"editAlbum",:id=>@album.id%>
+		</span>
+		
+	</td>
+
+</tr>
+</table>
+<table >
+<tr >
+	
+		<% for photo in @album.photos %>
+		<td >
+			<%=link_to (image_tag photo.image.url(:thumb)),{:controller => :users, :action => :showall},:class=>"lightbox"%>
+			<%=photo.image_description%><br/>&nbsp;&nbsp;
+			<span style="text-align:center">
+				<%=link_to image_tag(("/images/edit_icon.png"),:width=>'15px',:height=>'15px'),
+						:controller=>"albums",:action=>"editphoto",:id=>photo.id %>
+			</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span style="text-align:center">
+				<%=link_to image_tag(("/images/delete_icon.png"),:width=>'15px',:height=>'15px'),
+						{:controller=>"albums",:action=>"deletephoto",:id=>photo.id},{:onclick=>"return confirm('Are you sure ?')"} %></span>
+		</td>
+		
+	
+		<% end %>
+	
+</tr>
+
+</table>
+<%else%>
+
+<table>
+<tr>
+	<td>
+		<span style="color:#FF5819;font-family:monospace;font-size:20px">
+			<b>Album Name:</b>
+				<%=@album.album_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b>Description:</b>
+					<%=@album.album_description %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+	</td>
+	<td>
+		<br/>
+		<span >
+		<%=button_to "Add Photos",:controller=>"albums",:action=>"editAlbum",:id=>@album.id%>
+		</span>
+		
+	</td>
+
+</tr>
+</table>
+<table >
+<tr >
+		<td >
+			<%=image_tag (('/images/smiley face.jpg'),:width=>'40px',:height=>'40px')%>
+		</td>
+		
+	
+</tr>
+
+</table>
+
+
+<%end%>	
+</div>
+
+

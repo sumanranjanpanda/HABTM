@@ -1,0 +1,196 @@
+#navigation {
+	width: 950px;
+	height: 50px;
+	margin: 0;
+	padding: 0;
+	background: url(/images/navigation-bg.jpg) no-repeat left top;
+} 
+#navigation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+} 
+#navigation ul li {
+	display: inline;
+	margin: 0px;
+} 
+#navigation ul li a {
+	height:33px;
+	display: block;
+	float: left;
+	padding: 17px 15px 0 15px;
+	font: bold 12px Arial;
+	color: #FFF;
+	text-decoration: none;
+	background: url(/images/navigation-separator.png) no-repeat right center;
+} 
+
+#navigation ul li a:hover {
+	color:#363636;
+	background: url(/images/navigation-hover.png) repeat-x left top;
+}
+
+#navigation ul li#active a {
+	color:#363636;
+	background: url(/images/navigation-hover.png) repeat-x left top;
+}
+
+.bgi{
+background-image:url('/images/background_img.png');
+background-size:1500px;
+background-repeat:no-repeat;
+margin:20px 20px 20px 50px;
+}
+
+
+
+.err_msg{
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    color: red;
+    padding: 10px 10px 10px 10px;
+    width: 300px;
+    padding-left: 120px;
+    margin: 5px 50px 0 0;
+    text-align:left;
+  /*  border:1px solid red;
+    background-color:yellow;*/
+}
+.des_right{
+	text-align:left;
+	font-family:monospace;
+	font-weight:bold;
+	/*color:Darkblue;	*/
+color:Steelblue;
+	font-size:100%;
+	padding:2px;
+	
+}
+.des_left{
+	text-align:left;
+	font-family:monospace;
+	color:blue;
+	font-size:100%;
+	padding:2px;
+	
+}
+.g-button-submit {
+border: 1px solid #3079ED;
+color: white;
+font-size:130%;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+font-family:serif;
+text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+background-color: #4D90FE;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#4787ed));
+background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
+background-image: linear-gradient(top,#4d90fe,#4787ed);
+}
+
+.heading{
+
+background-color:#8585C2;
+text-align:center;
+
+}
+
+
+
+.g-button-submit1 {
+border: 1px solid #3079ED;
+color: white;
+font-size:140%;
+font-family:serif;
+text-decoration:none;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+/*background-color: #4D90FE;*/
+background-color: grey;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#4787ed));
+background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
+background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
+background-image: linear-gradient(top,#4d90fe,#4787ed);
+}
+
+
+.signin-box{
+margin: 40px 10px 0 0;
+padding: 20px 25px 15px;
+/*background:DarkOrange;*/
+background-image:url('/images/form_back.jpg');
+background-size:350px 300px;
+background-repeat:no-repeat;
+/*border: 1px solid #E5E5E5;*/
+width:300px;
+
+-moz-border-radius:10px;
+-webkit-border-radius:10px;
+}
+
+#div_r{
+float:right;
+}
+#div_l{
+float:left;
+}
+.pagination {
+    padding: 3px;
+    margin: 3px;
+  }
+  .pagination a {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #aaaadd;
+    text-decoration: none;
+    color: #000099;
+  }
+  .pagination a:hover, .pagination a:active {
+    border: 1px solid #000099;
+    color: #000;
+  }
+  .pagination span.current {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #000099;
+    font-weight: bold;
+    background-color: #000099;
+    color: #FFF;
+  }
+  .pagination span.disabled {
+    padding: 2px 5px 2px 5px;
+    margin: 2px;
+    border: 1px solid #eee;
+    color: #ddd;
+  }
+
+.img
+{
+  margin: 2px;
+  border:0px;
+/*border:1px solid red;*/
+  height: auto;
+  width: auto;
+  float: left;
+  text-align: center;
+}	
+div.img img
+{
+  display: inline;
+  margin: 3px;
+  border: 1px solid #ffffff;
+}
+div.img a:hover img {border: 1px solid #0000ff;}
+.desc
+{
+  text-align: center;
+  font-weight: normal;
+  width: 120px;
+  margin: 2px;
+}

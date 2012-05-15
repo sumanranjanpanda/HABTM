@@ -1,0 +1,26 @@
+
+
+<div style="margin:20px 0 0 0">
+<%for user in @user%>
+	<%if user.albums.exists?%>
+		<div class="img" style="background-color:#3333FF;-webkit-border-radius:10px;padding:10px">
+		<span style="color:white;font-size:18px;font-family:verdana;font-style:italic;">
+		<span><%=user.name%></span></span></br>
+		<% for album in user.albums %>
+		<div class="img">
+			<span class="img" style="background-color:darkorange;-webkit-border-radius:10px;padding:5px">
+				<% for photo in album.photos %><%end%>
+					<%=link_to image_tag(photo.image.url(:thumb),
+ :alt => ""),:controller=>"albums",:action=>"showusers",:id=>album.id%>
+						<span class="desc" style="color:white;font-size:12px;font-family:verdana;font-style:italic;text-align:left">
+							<div><b>Album Name:</b><%= album.album_name %></div>
+							<b>Description:</b><%=album.album_description %>
+						</span>		
+			</span>
+		</div>
+		<%end %>
+		</div>
+	<%end%>
+		
+<%end%>
+<div>

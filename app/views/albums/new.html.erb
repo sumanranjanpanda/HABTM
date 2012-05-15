@@ -1,0 +1,15 @@
+<%=javascript_include_tag :all%>
+<%=stylesheet_link_tag :all%>
+<% form_for (@album,:method=>"post",:controller=>"albums",:action=>"create",:html=>{:multipart=>true}) do |f|%>
+<div style="text-align:center;padding:40px"><%=render :partial=>"form",:locals=>{:f=>f}%></div>
+<div style="text-align:center">
+<%=f.submit "create album"%>
+</div>
+<%end%>
+
+
+
+
+
+
+
