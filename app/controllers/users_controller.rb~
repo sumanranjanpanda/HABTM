@@ -4,13 +4,15 @@ before_filter :check ,:except=>[:signin,:signup,:create,:forgetpassword,:contact
 
 
 	def index
+		
 		@user=User.find(params[:id])
 		if @user.roles.collect{|rolename| rolename.name }.include?("Admin")
 			redirect_to :action=>"showall"
 		else
 			redirect_to :action=>"profile",:id=>@user.id
 		end
-
+	
+	
 	end
 
 
@@ -47,8 +49,11 @@ before_filter :check ,:except=>[:signin,:signup,:create,:forgetpassword,:contact
 		end
 	end
 
-	def showall		
+	def showall
+		
 		@admin=User.find(session[:user_id])
+		#@users=User.find(:all, :conditions => ["id !=(?)", session[:user_id] ] )	
+		#@admin=User.find_by_id(1)
 		@users=User.paginate :page => params[:page] , :per_page => 3 ,:order => 'created_at DESC'
 	end
 
@@ -64,7 +69,10 @@ before_filter :check ,:except=>[:signin,:signup,:create,:forgetpassword,:contact
 	end	
 
 	def create
+
 		@user=User.new(params[:user])
+#		return if params[:attachment].blank?
+#      		@user.uploaded_file = params[:attachment]
 		if @user.save
 			flash[:notice]=" successfully registered........."
 			redirect_to :action=>"signin"
@@ -168,7 +176,13 @@ before_filter :check ,:except=>[:signin,:signup,:create,:forgetpassword,:contact
 			@admin = @usr.roles.collect{|rolename| rolename.name }.include?("Admin")
 			if @user 
 				if @user.destroy
+
 					if @admin
+			puts "1----------------------------------------------------------------"
+			puts @user
+			puts @usr
+			puts @admin		
+			puts "1----------------------------------------------------------------"
 						if (@user.id != @usr.id)
 						flash[:notice]="Profile of " +@user.username+" deleted successfully"
 						redirect_to :action=>"showall"
@@ -214,4 +228,22 @@ private
 	
 
 end
+
+
+
+
+
+
+
+
+#send_file "#{RAILS_ROOT}/public/notes/contacts/#{@note_file.id}/original_#{@note_file.attached_file_name}", :filename => "#{@note_file.attached_file_name}", :type=>"#{@note_file.attached_content_type}"
+
+#inside create method
+#		puts "----------------------------------------------------------"
+#		puts params[ :user ][ :role_ids ].flatten
+#		puts "----------------------------------------------------------"
+#		@roleids=params[ :user ][ :role_ids ]
+#		@roleids.each do |roleid|
+#		@user.roles << roleid
+#		end
 
