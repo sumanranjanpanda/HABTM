@@ -48,20 +48,30 @@ class AlbumsController < ApplicationController
 		 if @photo.update_attributes(params[:photo])
 		   redirect_to :action=>:showphoto,:id=>@photo.album_id
 		 end
+	
+
 	end
 
-	def showusers	
+
+
+	def showusers
+		
 		@album=Album.find(params[:id])
 		@user=User.find(@album.user_id)
 	
 	end
 
+
+
+
 	def deletephoto
+	
 		@photo=Photo.find(params[:id])	
 		if @photo.destroy
 			@photo.image.clear
 			redirect_to :action=>"showphoto",:id=>@photo.album_id
 		end
+
 	end
 
 	def deleteAlbum
@@ -69,20 +79,28 @@ class AlbumsController < ApplicationController
 		if @album.destroy
 			redirect_to :action=>:viewalbum
 		end
+
 	end
 
 
 	def showall
 		@user=User.all
+	
 	end
 
+
+
 	def viewalbum
+
 		@user=User.find(session[:user_id])
+
 	end
+
 
 	def theme
 	
 	end
+
 
 end
 
